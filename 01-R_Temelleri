@@ -1,0 +1,95 @@
+# R diline giriş:
+# - RStudio arayüzü tanıtımı
+# - Değişken tanımlama
+# - Veri tipleri (numeric, character, logical)
+# - Vektör oluşturma ve indeksleme
+# - Basit işlemler
+# - Temel fonksiyonlar
+
+#  RStudio Arayüzü
+# Console → Çalıştırma alanı
+# Script → Kodları yazdığımız dosya
+# Environment → Tanımlı değişkenler
+# Files, Plots, Packages gibi sekmeler → Yardımcı bölümler
+
+#  DEĞİŞKEN TANIMLAMA
+
+x <- 10     # x adlı değişkene 10 sayısını atadık
+y = 5       # y değişkeni için "=" de kullanılabilir
+
+# Değişkenleri yazdırma
+x           # 10
+print(y)    # 5
+
+#  VERİ TİPLERİ
+
+# Sayısal (numeric)
+sayi <- 3.14
+print(sayi)         # 3.14
+class(sayi)         # "numeric"
+typeof(sayi)        # "double"
+
+# Karakter (character)
+isim <- "Zeynep"
+print(isim)         # "Zeynep"
+class(isim)         # "character"
+
+# Mantıksal (logical)
+dogruMu <- TRUE
+yanlisMi <- FALSE
+print(dogruMu)      # TRUE
+class(dogruMu)      # "logical"
+
+#  VEKTÖR OLUŞTURMA
+
+# Vektör: Aynı türden birden fazla veriyi tek yapıda tutar
+notlar <- c(85, 90, 78, 92)         # Sayısal vektör
+isimler <- c("Ali", "Ayşe", "Zeynep")  # Karakter vektör
+
+# Vektör içeriğini yazdırma
+print(notlar)
+print(isimler)
+
+# Elemanlara erişim (indeks 1’den başlar!)
+notlar[1]       # İlk not → 85
+isimler[3]      # "Zeynep"
+
+# Vektörün uzunluğu 
+length(notlar)  # 4
+
+#  BASİT MATEMATİKSEL İŞLEMLER
+
+a <- 8
+b <- 4
+
+toplam <- a + b        # 12
+fark <- a - b          # 4
+carpim <- a * b        # 32
+bolum <- a / b         # 2
+kalan <- a %% b        # 0 (mod alma)
+
+# İşlem sonuçlarını yazdır
+print(toplam)
+print(fark)
+print(carpim)
+print(bolum)
+print(kalan)
+
+#  TEMEL FONKSİYONLAR
+
+# Ortalama alma
+notlar <- c(70, 80, 90)
+mean(notlar)         # 80
+
+# Ortanca (medyan)
+median(notlar)       # 80
+
+# Standart sapma
+sd(notlar)           # ~10
+
+# Tür kontrolü (class vs typeof)
+class(notlar)        # "numeric"
+typeof(notlar)       # "double"
+
+# Yardım alma
+?mean        # mean fonksiyonu hakkında yardım sayfası
