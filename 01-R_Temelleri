@@ -69,7 +69,9 @@ toplam <- a + b        # 12
 fark <- a - b          # 4
 carpim <- a * b        # 32
 bolum <- a / b         # 2
-kalan <- a %% b        # 0 (mod alma)
+kalan <- a %% b        # 0 (mod alma – bölümden kalanı verir)
+tam_sayi_bolum <- a %/% b  # 2 (tam sayı bölme – küsuratı atar)
+
 
 # İşlem sonuçlarını yazdır
 print(toplam)
