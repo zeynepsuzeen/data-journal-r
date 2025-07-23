@@ -1,0 +1,144 @@
+# Kombinasyon, permütasyon, örnekleme ve temel olasılık dağılımları
+
+
+# 1. Kombinasyon ve Permütasyon
+
+# Faktöriyel: n! = n * (n-1) * ... * 1
+factorial(5)  # 5! = 120
+
+# Permütasyon: Sıralı seçim sayısı
+# P(n, k) = n! / (n-k)! 
+n <- 5; k <- 2
+perm <- factorial(n) / factorial(n - k)
+perm
+# Örnek: 5 kişiden 2'sini sıralı seçmek kaç farklı şekilde yapılır?
+
+# Kombinasyon: Sırasız seçim sayısı
+# C(n, k) = n! / (k! * (n-k)!)
+comb <- choose(n, k)
+comb
+# Örnek: 5 kişiden 2'si kaç farklı şekilde seçilir?
+
+# Not: 
+# choose() ve combn() fonksiyonları sıralama ve seçim işlemlerinde kullanılır.
+# combn(1:5, 3) fonksiyonu 1'den 5'e kadar sayılardan 3'lü tüm kombinasyonları verir.
+
+# Kombinasyon örneği: 1'den 5'e kadar sayılardan 3'lü kombinasyonlar
+combn(1:5, 3)
+
+# 2. Örnekleme (sampling)
+
+# Basit örnekleme: Tekrarsız seçim
+set.seed(123)
+samp1 <- sample(1:10, 5)         
+print(samp1)
+
+# Tekrarlı örnekleme (aynı eleman birden fazla seçilebilir)
+set.seed(123)
+samp2 <- sample(1:6, 10, replace=TRUE)  
+print(samp2)
+
+# Örnekleme sonuçlarının histogramı (örnek dağılımı görselleştirme)
+hist(samp2, main="Örnekleme ile Çekilen Değerlerin Histogramı",
+     xlab="Değerler", col="lightblue", breaks=seq(0.5,6.5,1))
+
+# Kategorik örnekleme: Yazı tura örneği
+coin <- c("Head", "Tail")
+
+# Eşit olasılıkla 100 deneme
+set.seed(42)
+coin_sample <- sample(coin, 100, replace=TRUE, prob=c(0.5, 0.5))
+table(coin_sample)
+
+# Olasılıkları farklı ayarlanmış örnekleme (Tail gelme ihtimali %70)
+set.seed(42)
+coin_sample2 <- sample(coin, 100, replace=TRUE, prob=c(0.7, 0.3))
+table(coin_sample2)
+
+# 3. Binom Dağılımı
+
+# Binom dağılımı: Başarı sayısının olasılık dağılımı (n deneme, p başarı)
+
+x <- 0:5            # Başarı sayıları
+size <- 5           # Deneme sayısı
+prob <- 0.3         # Başarı olasılığı
+
+# Olasılık kütle fonksiyonu (P(X = x))
+dbinom_vals <- dbinom(x, size, prob)
+dbinom_vals
+
+# Kümülatif olasılık (P(X <= x))
+pbinom_vals <- pbinom(x, size, prob)
+pbinom_vals
+
+# P(X <= 3) nedir?
+pbinom(3, size, prob)
+# Yani 5 denemede en fazla 3 başarılı sonuç olma olasılığı
+
+# Binom dağılımının grafikle gösterimi
+plot(x, dbinom_vals, type="h", 
+     main="Binom Dağılımı (n=5, p=0.3)",
+     xlab="Başarı Sayısı",
+     ylab="Olasılık")
+
+# 4. Normal Dağılım
+
+# Normal dağılım: Sürekli değişkenlerin en yaygın dağılımı
+
+# Ortalama 50, standart sapma 10 olan 1000 rastgele sayı üret
+set.seed(123)
+norm_sample <- rnorm(1000, mean=50, sd=10)
+
+# Ortalama ve standart sapmayı hesapla
+mean(norm_sample)
+sd(norm_sample)
+
+# Yoğunluk fonksiyonu (pdf) değerleri hesapla
+x_vals <- seq(20, 80, length=100)
+y_vals <- dnorm(x_vals, mean=50, sd=10)
+
+# Yoğunluk fonksiyonunu çiz
+plot(x_vals, y_vals, type="l", col="blue", lwd=2,
+     main="Normal Dağılım Yoğunluk Fonksiyonu",
+     xlab="Değer",
+     ylab="Yoğunluk")
+
+# P(X <= 60) olasılığı nedir? (kümülatif dağılım)
+pnorm(60, mean=50, sd=10)
+
+# %90 olasılık eşiği (yani %90 olasılıkla X değeri bu eşikten düşük)
+qnorm(0.9, mean=50, sd=10)
+
+# Standartlaştırma (Z Dönüşümü)
+# Bir X değeri normal dağılımda ortalama (mu) ve standart sapma (sigma) ile verildiğinde,
+# bu değerin standart normal dağılımdaki (ortalama=0, sd=1) karşılığı:
+#
+# z = (X - mu) / sigma
+#
+# Örnek: X=60, mu=50, sigma=10 için z değeri:
+X <- 60
+mu <- 50
+sigma <- 10
+z <- (X - mu) / sigma
+z
+
+# Bu z değeri için standart normal dağılımdaki P(Z <= z) olasılığı:
+pnorm(z)
+
+# Alternatif olarak doğrudan:
+pnorm(60, mean=50, sd=10)  # ile aynıdır
+
+# 5. Random Sayılar ve Seed
+
+# Aynı rastgele sonuçları almak için set.seed() kullanılır
+set.seed(42)
+sample1 <- sample(1:100, 5)
+print(sample1)
+
+set.seed(42)
+sample2 <- sample(1:100, 5)
+print(sample2)  # sample1 ile aynı sonuç çıkar
+
+# set.seed kullanılmazsa farklı sonuçlar elde edilir
+sample3 <- sample(1:100, 5)
+print(sample3)
