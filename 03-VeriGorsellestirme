@@ -1,7 +1,7 @@
 # VERİ GÖRSELLEŞTİRME
 
-# R'da veri görselleştirmek için base grafik fonksiyonları kullanılabilir.
-# Bu dosyada: hist(), barplot(), boxplot(), pie()
+# Bu dosyada, R'ın temel (base) grafik fonksiyonlarıyla verileri nasıl görselleştirebileceğimizi öğreneceğiz.
+# Kullanacağımız fonksiyonlar: hist(), barplot(), boxplot(), pie()
 
 # Örnek veri seti
 notlar <- c(75, 82, 90, 68, 95, 88, 100, 76, 85, 92)
