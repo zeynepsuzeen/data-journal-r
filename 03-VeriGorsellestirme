@@ -71,3 +71,24 @@ pie(secilme_sayisi, labels = dersler, main = "Pie", col = c("skyblue", "pink", "
 
 # Ekranı eski haline döndür
 par(mfrow = c(1, 1))
+
+
+# 5. Yaprak-Gövde Grafiği (stem)
+# stem(): Sayısal verilerin dağılımını hızlıca görmek için kullanılır.
+# Özellikle küçük veri setlerinde anlamlıdır.
+
+stem(notlar,
+     scale = 2)  # scale değeri ayrıntıyı kontrol eder
+
+
+# 6. Nokta Grafiği (dotchart)
+# dotchart(): Sayısal değerlerin yatay eksende nokta olarak gösterildiği grafik türü.
+# Kategorik verilerle birlikte kullanılabilir.
+
+dotchart(notlar,
+         labels = ogrenciler,
+         main = "Öğrenci Notları - Nokta Grafiği",
+         xlab = "Notlar",
+         col = "purple",
+         pch = 19)  # dolu daire sembolü
+
