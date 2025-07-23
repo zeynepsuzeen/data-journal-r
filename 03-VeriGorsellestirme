@@ -17,18 +17,6 @@ hist(notlar,
      col = "lightblue",
      border = "black")
 
-# Hazır veri ile histogram
-# rivers veri seti: Amerika’daki nehir uzunlukları (mil cinsinden)
-
-rivers
-hist(rivers,
-     main = "Nehir Uzunlukları Histogramı",
-     xlab = "Uzunluk (mil)",
-     col = "lightgray",
-     breaks = 20)  # Aralık sayısı (detay kontrolü)
-
-
-
 # 2. Barplot (barplot)
 # Bar grafiği: Kategorik verileri ya da sayısal değerleri göstermek için
 # Örneğin öğrenci isimlerine karşılık notları çizdirelim:
@@ -72,14 +60,12 @@ pie(secilme_sayisi, labels = dersler, main = "Pie", col = c("skyblue", "pink", "
 # Ekranı eski haline döndür
 par(mfrow = c(1, 1))
 
-
 # 5. Yaprak-Gövde Grafiği (stem)
 # stem(): Sayısal verilerin dağılımını hızlıca görmek için kullanılır.
 # Özellikle küçük veri setlerinde anlamlıdır.
 
 stem(notlar,
      scale = 2)  # scale değeri ayrıntıyı kontrol eder
-
 
 # 6. Nokta Grafiği (dotchart)
 # dotchart(): Sayısal değerlerin yatay eksende nokta olarak gösterildiği grafik türü.
