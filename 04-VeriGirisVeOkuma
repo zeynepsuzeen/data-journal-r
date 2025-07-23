@@ -1,0 +1,100 @@
+# Bu dosyada R'da veri girişi, dosya okuma ve yazma işlemlerini öğreneceğiz.
+# Ayrıca bazı temel grafiklerle verileri görselleştireceğiz.
+# Dosya yollarını kendi bilgisayarınıza göre düzenlemeyi unutmayın!
+
+# 1. Temel Veri Setleri ve Görselleştirme
+# rivers veri seti: Amerika’daki nehir uzunlukları (mil cinsinden)
+
+data(rivers)  # Eğer yüklü değilse çağırır
+
+# rivers veri setinin temel istatistikleri
+summary(rivers)
+
+# Histogram
+hist(rivers,
+     main = "Nehir Uzunlukları Histogramı",
+     xlab = "Uzunluk (mil)",
+     col = "lightgray",
+     breaks = 20)
+
+# Basit pasta grafiği
+s <- c(12, 23, 5, 15)
+pie(s, labels = c("a", "b", "c", "d"),
+    col = rainbow(4),
+    main = "Pasta Grafiği Örneği")
+
+# Barplot
+barplot(s,
+        names.arg = c("a", "b", "c", "d"),
+        col = rainbow(4),
+        ylim = c(0, 100))
+
+# 2. mtcars veri seti ile kutu grafiği
+
+data(mtcars)
+
+boxplot(mtcars$mpg ~ mtcars$cyl,
+        main = "Araçların Yakıt Verimliliği (mpg) Silindir Sayısına Göre",
+        xlab = "Silindir Sayısı",
+        ylab = "Miles per Gallon (mpg)",
+        col = c("red", "blue", "gold"))
+
+# 3. Çizgi Grafiği Örneği
+
+x <- seq(1, 10, length = 100)
+y <- x^2
+
+plot(x, y,
+     main = "Çizgi Grafiği: y = x^2",
+     type = "l",   # Line plot
+     col = "red",
+     lwd = 3)
+
+# 4. Çalışma Dizini İşlemleri
+# Çalışma dizinini ayarlamak için kendi klasör yolunuzu yazın:
+
+setwd("C:/Users/Zeynep/Desktop")  
+getwd()  # Şu anki çalışma dizininizi gösterir
+
+# 5. Dosyaya Yazma
+
+d <- seq(10, 20, by = 0.5)
+n <- seq(20, 30, by = 0.5)
+df <- data.frame(d, n)
+print(df)
+
+# Dosyaya yazdırma (dosya yolunu çalışma dizinine göre yazabilirsiniz)
+write.table(df, file = "df1.txt",
+            sep = "\t",
+            row.names = FALSE,
+            col.names = FALSE)
+
+# write.csv ve read.csv fonksiyonları
+# CSV formatı, veri paylaşımında ve analizde çok kullanılır.
+
+write.csv(df, file = "df1.csv", row.names = FALSE)  # CSV dosyasına yazma
+
+df_csv <- read.csv("df1.csv")  # CSV dosyasını okuma
+head(df_csv)
+
+# 6. Dosyadan Okuma
+
+df2 <- read.table("df1.txt",
+                  header = FALSE,
+                  sep = "\t",
+                  dec = ".",
+                  na.strings = "NA")
+
+head(df2)  # Okunan verinin ilk birkaç satırını gösterir
+
+# 7. Paket Kurulumu ve Kullanımı (Opsiyonel)
+
+# Paket kurmak için:
+# install.packages("package_name")
+
+# Paketi projeye dahil etmek için:
+# library(package_name)
+
+# Örnek:
+# install.packages("ggplot2")
+# library(ggplot2)
