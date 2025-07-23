@@ -1,5 +1,3 @@
-# VERİ GÖRSELLEŞTİRME
-
 # Bu dosyada, R'ın temel (base) grafik fonksiyonlarıyla verileri nasıl görselleştirebileceğimizi öğreneceğiz.
 # Kullanacağımız fonksiyonlar: hist(), barplot(), boxplot(), pie()
 
