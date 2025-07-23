@@ -1,0 +1,73 @@
+# VERİ GÖRSELLEŞTİRME
+
+# R'da veri görselleştirmek için base grafik fonksiyonları kullanılabilir.
+# Bu dosyada: hist(), barplot(), boxplot(), pie()
+
+# Örnek veri seti
+notlar <- c(75, 82, 90, 68, 95, 88, 100, 76, 85, 92)
+ogrenciler <- c("Ali", "Ayşe", "Zeynep", "Mehmet", "Fatma",
+                "Ahmet", "Elif", "Ece", "Yusuf", "Can")
+
+# 1. Histogram (hist)
+# Histogram: Sürekli (sayısal) verilerin dağılımını gösterir.
+
+hist(notlar,
+     main = "Notların Histogramı",
+     xlab = "Notlar",
+     col = "lightblue",
+     border = "black")
+
+# Hazır veri ile histogram
+# rivers veri seti: Amerika’daki nehir uzunlukları (mil cinsinden)
+
+rivers
+hist(rivers,
+     main = "Nehir Uzunlukları Histogramı",
+     xlab = "Uzunluk (mil)",
+     col = "lightgray",
+     breaks = 20)  # Aralık sayısı (detay kontrolü)
+
+
+
+# 2. Barplot (barplot)
+# Bar grafiği: Kategorik verileri ya da sayısal değerleri göstermek için
+# Örneğin öğrenci isimlerine karşılık notları çizdirelim:
+
+barplot(notlar,
+        names.arg = ogrenciler,
+        main = "Öğrenci Notları",
+        ylab = "Not",
+        col = "orange",
+        las = 2)   # x eksenindeki yazıları dik göster
+
+# 3. Boxplot (boxplot)
+# Kutu grafiği: Minimum, Q1, Medyan, Q3, Maksimum değerleri görselleştirir.
+
+boxplot(notlar,
+        main = "Notların Kutu Grafiği",
+        col = "lightgreen",
+        horizontal = TRUE)
+
+# 4. Pie Chart (pie)
+# Pasta grafiği: Kategorik verilerin oransal dağılımı için kullanılır
+# Örnek veri: Anket sonucu - en sevilen dersler
+
+dersler <- c("Matematik", "İstatistik", "Programlama", "Tarih")
+secilme_sayisi <- c(12, 9, 6, 3)
+
+pie(secilme_sayisi,
+    labels = dersler,
+    main = "En Sevilen Dersler",
+    col = c("skyblue", "pink", "lightgreen", "lightcoral"))
+
+# Çoklu grafik çizimi
+# Aynı anda birden fazla grafik çizmek için:
+par(mfrow = c(2, 2))  # 2 satır, 2 sütunluk düzen
+
+hist(notlar, main = "Histogram", col = "lightblue")
+barplot(notlar, names.arg = ogrenciler, main = "Barplot", col = "orange", las = 2)
+boxplot(notlar, main = "Boxplot", col = "lightgreen", horizontal = TRUE)
+pie(secilme_sayisi, labels = dersler, main = "Pie", col = c("skyblue", "pink", "lightgreen", "lightcoral"))
+
+# Ekranı eski haline döndür
+par(mfrow = c(1, 1))
