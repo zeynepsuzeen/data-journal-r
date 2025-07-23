@@ -5,38 +5,50 @@
 notlar <- c(75, 82, 90, 68, 95, 88, 100, 76, 85, 92)
 print(notlar)
 
-#  Ortalama (Mean)
+# Ortalama (Mean)
 mean(notlar)   # Tüm değerlerin toplamı / eleman sayısı
 
-#  Medyan (Median)
+# Medyan (Median)
 median(notlar) # Ortadaki değer (sıralı listenin ortası)
 
-#  Minimum ve Maksimum Değerler
+# Minimum ve Maksimum Değerler
 min(notlar)    # En küçük değer
 max(notlar)    # En büyük değer
 
-#  Çeyrekler ve Özet İstatistikler
+# Çeyrekler ve Özet İstatistikler
 quantile(notlar)  # %25, %50, %75 değerleri (Q1, Q2, Q3)
 c1 <- quantile(notlar, 0.25)  # 1. Çeyrek
 c2 <- quantile(notlar, 0.50)  # 2. Çeyrek (medyan)
 c3 <- quantile(notlar, 0.75)  # 3. Çeyrek
-summary(notlar)   # minimum, Q1, median, mean, Q3, max
+IQR(notlar)                   # Interquartile Range (Q3 - Q1)
+summary(notlar)              # minimum, Q1, median, mean, Q3, max
 
-#  Varyans ve Standart Sapma
+# Varyans ve Standart Sapma
 var(notlar)    # Değerlerin ortalamadan ne kadar saptığı (kareli)
 sd(notlar)     # Varyansın karekökü (daha anlamlı)
 
-#  Değer Aralığı (Range)
+# Değer Aralığı (Range)
 range(notlar)        # En küçük ve en büyük değer
 diff(range(notlar))  # Aralık uzunluğu
 
-#  Boxplot (Kutu Grafiği) – Görselleştirme
+# Boxplot (Kutu Grafiği) – Görselleştirme
 boxplot(notlar, main = "Notların Kutu Grafiği", col = "lightblue")
 
 # Sıralama Fonksiyonları
+sort(notlar)    # Küçükten büyüğe sıralama
+rank(notlar)    # Her değerin sıralamadaki yeri
 
-# Sıralama (küçükten büyüğe)
-sort(notlar)
+# Frekans Tablosu ve Sınıflandırma
+# Notları belirli aralıklara göre sınıflandırmak için cut() ve table()
+sınıflar <- cut(notlar, breaks = c(60, 70, 80, 90, 100), right = FALSE)
+table(sınıflar)  # Hangi aralıkta kaç gözlem var
 
-# Değerlerin sıralama pozisyonları
-rank(notlar)
+# TEMEL FONKSİYONLAR
+
+# Toplam ve uzunluk
+sum(notlar)      # Değerlerin toplamı
+length(notlar)   # Veri setindeki eleman sayısı
+
+# Tekrarlı ve ardışık vektör oluşturma
+rep(1:3, times=2)     # 1 2 3 1 2 3
+seq(1, 10, by=2)      # 1 3 5 7 9
