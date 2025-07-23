@@ -87,7 +87,7 @@ df2 <- read.table("df1.txt",
 
 head(df2)  # Okunan verinin ilk birkaç satırını gösterir
 
-# 7. Paket Kurulumu ve Kullanımı (Opsiyonel)
+# 7. Paket Kurulumu ve Kullanımı 
 
 # Paket kurmak için:
 # install.packages("package_name")
