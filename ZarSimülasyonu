@@ -1,0 +1,49 @@
+# Amaç: Zar atışlarını simüle ederek deneysel olasılıklarla teorik binom dağılımını karşılaştırmak. Aynı zamanda normal dağılıma yaklaşımı da basitçe gözlemlemek.               
+# Bu dosya, R öğrenme sürecimde hem sample() hem de binom fonksiyonlarını uygulamalı olarak pekiştirmek amacıyla hazırlanmıştır.                                        
+
+# Zar Simülasyonu
+set.seed(135)  # Tekrarlanabilirlik için sabitliyoruz.
+zar <- sample(1:6, 100, replace = TRUE)  # 100 kez zar atışı
+hist(zar, main = "Zar Simülasyonu Histogram", 
+     xlab = "Zar Değerleri", col = "pink")
+
+# Özet İstatistikler
+frekans <- table(zar)
+frekans                   # Her sayıdan kaç tane geldi
+prop.table(frekans)       # Göreli frekans (olasılık tahmini)
+mean(zar)                 # Zar ortalaması
+
+# Örneklem Türleri
+sample(1:6, 4, replace = FALSE)  # Tekrarsız örnekleme (örneğin 4 farklı zar)
+sample(1:6, 4, replace = TRUE)   # Tekrarlı örnekleme
+
+# Deneysel Olasılıkların Görselleştirilmesi
+barplot(prop.table(frekans), 
+        main = "Deneysel Olasılıklar", 
+        col = "skyblue",
+        ylim = c(0, 0.25))
+abline(h = 1/6, col = "red", lty = 2)  # Teorik olasılık çizgisi (her yüzeye eşit)
+
+# Açıklayıcı not: Zar adildir → Her bir sayının gelme olasılığı teoride 1/6 ≈ 0.1667
+
+# Deneysel Başarı Sayısı: 6 gelen zar sayısı
+sum(zar == 6)
+sum(zar == 6) / length(zar)  # Oranı (deneysel olasılık)
+
+# Binom Dağılım Grafiği
+x <- 0:30  # Başarı sayısı aralığı
+barplot(dbinom(x, size = 100, prob = 1/6),
+        names.arg = x,
+        main = "Binom Dağılım: P(X = k), n = 100, p = 1/6",
+        xlab = "Başarı Sayısı (6 gelme)",
+        ylab = "Olasılık",
+        col = "lightgreen")
+
+# Normal Dağılıma Yaklaşım (Merkezi Limit Teoremi)
+mean_theory <- 100 * (1/6)
+sd_theory <- sqrt(100 * (1/6) * (5/6))
+
+# 6'nın 10 ila 16 kez gelme olasılığı (normal yaklaşım ile)
+pnorm(16, mean_theory, sd_theory) - pnorm(10, mean_theory, sd_theory)
+
+# Açıklama: Bu sonuç, binom dağılımın büyük n durumunda normal dağılıma nasıl yaklaştığını gözlemlemek için hesaplandı.
